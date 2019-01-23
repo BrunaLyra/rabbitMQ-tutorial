@@ -1,7 +1,6 @@
 import pika
 
 # Establishing connection with RabbitMQ server
-
 connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
 channel = connection.chanel() 
 
