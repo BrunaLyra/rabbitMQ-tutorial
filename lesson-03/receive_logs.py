@@ -1,22 +1,22 @@
 import pika
 
 
-# Establishing connection with RabbitMQ server
+
 connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
 channel = connection.channel() 
 
-channel.exchange_declare(exchange='logs', exchange_type='fanout')
+channel.exchange_declare(exchange='logs', exchange_type='fanout') ## Creating exchange
 
 result = channel.queue_declare(exclusive=True)
 
 queue_name = result.method.queue
 
-channel.queue_bind(exchange='logs', queue=queue_name)
+channel.queue_bind(exchange='logs', queue=queue_name) ## Binding
 
 
 print ('[*] Waiting for logs. To exit press CTRL+C')
 
-# Callback function
+
 def callback(ch, method, properties, body):
     print ("[x] %r" %body)
 

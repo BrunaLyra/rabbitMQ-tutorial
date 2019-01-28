@@ -4,7 +4,7 @@ import sys
 connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
 channel = connection.channel() 
 
-channel.exchange_declare(exchange='logs', exchange_type='fanout')
+channel.exchange_declare(exchange='logs', exchange_type='fanout') ## Creating exchange
 
 message = ' '.join(sys.argv[1:]) or "Hello World!"
 channel.basic_publish(exchange='logs',
